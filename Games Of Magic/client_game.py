@@ -201,7 +201,7 @@ def return_character_by_string(data, screen, my_side, my_creachers, enemy_creach
 
 
 def update_mana(mana, turn):
-    if turn % 20 == 0 and mana < 10:
+    if turn % 35 == 0 and mana < 10:
         return mana + 1
     else:
         return mana

@@ -12,6 +12,7 @@ messages_to_send = []
 wait_for_game = []
 send_start_game = []
 dict_has_other_player = {}
+dict_user_has_tuple = {}
 sockets_to_quit = []
 users_dict = {}
 self_messages_to_send = []
@@ -28,17 +29,21 @@ def send_waiting_messages(wait_list):
         (client_socket, data_of_message) = message
         if client_socket in wait_list and client_socket in dict_has_other_player \
                 and dict_has_other_player[client_socket] in wait_list:
-            client_socket.send(data_of_message)
-            dict_has_other_player[client_socket].send(data_of_message)
+            soket1, socket2 = dict_user_has_tuple[client_socket]
+            soket1.send(data_of_message)
+            socket2.send(data_of_message)
             messages_to_send.remove(message)
         elif client_socket in wait_list and client_socket in dict_has_tournament and \
                 dict_has_tournament[client_socket].dict_has_other_player[client_socket] in wait_list:
-            client_socket.send(data_of_message)
-            dict_has_tournament[client_socket].dict_has_other_player[client_socket].send(data_of_message)
+            soket1, socket2 = dict_has_tournament[client_socket].dict_user_has_tuple[client_socket]
+            soket1.send(data_of_message)
+            socket2.send(data_of_message)
             messages_to_send.remove(message)
     for socket_quited in list2:
         if socket_quited in dict_has_other_player and dict_has_other_player[socket_quited] in wait_list:
             dict_has_other_player[socket_quited].send('finish')
+            del dict_user_has_tuple[dict_has_other_player[socket_quited]]
+            del dict_user_has_tuple[socket_quited]
             del dict_has_other_player[dict_has_other_player[socket_quited]]
             del dict_has_other_player[socket_quited]
             sockets_to_quit.remove(socket_quited)
@@ -71,7 +76,7 @@ while True:
             (new_socket, address) = server_socket.accept()
             open_client_sockets.append(new_socket)
         else:
-            data = current_socket.recv(1024).replace('\n', '')
+            data = current_socket.recv(1024)
             if data == '':
                 open_client_sockets.remove(current_socket)
                 if current_socket in wait_for_game:
@@ -160,9 +165,11 @@ while True:
                     if len(wait_for_game) == 0:
                         wait_for_game.append(current_socket)
                     else:
-                        send_start_game.append((current_socket, wait_for_game[0]))
+                        send_start_game.append((wait_for_game[0], current_socket))
                         dict_has_other_player.update({current_socket: wait_for_game[0]})
                         dict_has_other_player.update({wait_for_game[0]: current_socket})
+                        dict_user_has_tuple.update({current_socket: (wait_for_game[0], current_socket)})
+                        dict_user_has_tuple.update({wait_for_game[0]: (wait_for_game[0], current_socket)})
                         wait_for_game.remove(wait_for_game[0])
                 else:
                     messages_to_send.append((current_socket, data))

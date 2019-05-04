@@ -22,7 +22,7 @@ class Wizard(Character):
 class Minotaur(Character):
 
     def __init__(self, x, y, side, screen):
-        super(Minotaur, self).__init__('Minotaur', x, y, 300, 234, 420, 505, 100, 5.0, 5, 8, 100,
+        super(Minotaur, self).__init__('Minotaur', x, y, 300, 234, 420, 505, 100, 3.0, 5, 8, 100,
                                        'Fantasy Free Game Kit/Characters/Monster - Minotaur/PNG/FW_Minotaur_Walking__',
                                        'Fantasy Free Game Kit/Characters/Monster - Minotaur/PNG/FW_Minotaur_Attacking__'
                                        , side, 35, 9, screen)

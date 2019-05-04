@@ -245,7 +245,7 @@ def communication_with_server_and_run_game(client_socket, open_client_sockets, n
 
 def main():
     client_socket = socket.socket()
-    client_socket.connect(('127.0.0.1', 8080))
+    client_socket.connect(('142.93.106.146', 8080))
     client_socket.setblocking(True)
     login_or_sign_in = m_screen()
     sys.argv = [client_socket, login_or_sign_in]
