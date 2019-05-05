@@ -7,7 +7,8 @@ class Tournament(object):
         self.team_2 = (socket3, socket4)
         self.final = []  # The winners of the first round and the players of the second round
         self.dict_has_other_player = {socket1: socket2, socket2: socket1, socket3: socket4, socket4: socket3}
-        self.dict_user_has_tuple = {socket1: (socket1, socket2), socket2: (socket1, socket2), socket3: (socket3, socket4), socket4: (socket3, socket4)}
+        self.dict_user_has_tuple = {socket1: (socket1, socket2), socket2: (socket1, socket2),
+                                    socket3: (socket3, socket4), socket4: (socket3, socket4)}
 
     def new_winner(self, socket_won):
         self.final.append(socket_won)
