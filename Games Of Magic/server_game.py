@@ -76,7 +76,10 @@ while True:
             (new_socket, address) = server_socket.accept()
             open_client_sockets.append(new_socket)
         else:
-            data = current_socket.recv(1024)
+            try:
+                data = current_socket.recv(1024)
+            except:
+                print 'client disconected'
             if data == '':
                 open_client_sockets.remove(current_socket)
                 if current_socket in wait_for_game:
