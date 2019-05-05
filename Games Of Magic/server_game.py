@@ -78,7 +78,7 @@ while True:
         else:
             data = current_socket.recv(1024)
             if data == '':
-                print open_client_sockets
+                open_client_sockets.remove(current_socket)
                 if current_socket in wait_for_game:
                     wait_for_game.remove(current_socket)
                 if current_socket in wait_for_tournament:

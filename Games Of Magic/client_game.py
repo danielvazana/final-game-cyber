@@ -63,9 +63,13 @@ def run_creachers(my_list, enemy_enemy, castle):
         if my_creacher.type != 'Minotaur':
             closest_enemy_creacher = closest_object_to_object(my_creacher, enemy_enemy)
             if closest_enemy_creacher:
-                if my_creacher.in_attack_range(closest_enemy_creacher):
-                    my_creacher.attack(closest_enemy_creacher)
-                    my_creacher.attacked = True
+              if closest_enemy_creacher.type != 'Minotaur':
+                  if my_creacher.in_attack_range(closest_enemy_creacher):
+                      my_creacher.attack(closest_enemy_creacher)
+                      my_creacher.attacked = True
+              elif my_creacher.distance(closest_enemy_creacher)/2 <= my_creacher.attack_range:
+                  my_creacher.attack(closest_enemy_creacher)
+                  my_creacher.attacked = True
         if not my_creacher.attacked:
             if my_creacher.distance(castle) <= 300:
                 my_creacher.attack(castle)
