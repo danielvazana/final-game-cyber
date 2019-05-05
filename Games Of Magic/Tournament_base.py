@@ -1,5 +1,8 @@
 class Tournament(object):
-
+    """
+    A tournament object that contains the participants' sockets, a player dictionary containing their opponent,
+    a second round list, and more.
+    """
     def __init__(self, socket1, socket2, socket3, socket4):
         self.points = 0  # The total points the the winner will earn
         self.round = 1

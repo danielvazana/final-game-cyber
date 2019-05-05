@@ -271,7 +271,6 @@ def main():
                                                                is_not_tournament)
             if my_castle.health != 0:
                 play_intro()
-                show_loading_screen(is_not_tournament)
                 client_socket.send(
                     'add points to tournament and winning;' + name + ';' + password + ';' + str(int(my_castle.health)))
                 my_castle = communication_with_server_and_run_game(client_socket, open_client_sockets, name, password,

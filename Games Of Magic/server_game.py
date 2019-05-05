@@ -61,8 +61,19 @@ def send_waiting_messages(wait_list):
     for message_login in list4:
         (client_socket, data_of_message_login) = message_login
         if client_socket in wait_list:
-            client_socket.send(data_of_message_login)
-            self_messages_to_send.remove(message_login)
+            try:
+                client_socket.send(data_of_message_login)
+                self_messages_to_send.remove(message_login)
+            except:
+                open_client_sockets.remove(current_socket)
+                if current_socket in wait_for_game:
+                    wait_for_game.remove(current_socket)
+                if current_socket in wait_for_tournament:
+                    wait_for_tournament.remove(current_socket)
+                if current_socket in dict_has_other_player:
+                    sockets_to_quit.append(current_socket)
+                if current_socket in dict_has_tournament:
+                    sockets_to_quit.append(current_socket)
     del list1
     del list2
     del list3
@@ -79,7 +90,7 @@ while True:
             try:
                 data = current_socket.recv(1024)
             except:
-                print 'client disconected'
+                pass
             if data == '':
                 open_client_sockets.remove(current_socket)
                 if current_socket in wait_for_game:

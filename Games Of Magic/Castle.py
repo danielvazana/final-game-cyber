@@ -5,6 +5,10 @@ import math
 
 
 class Castle(object):
+    """
+    A basic castle object, with the help of the object it is possible to view the castle according to its life situation
+    and view its life meter.
+    """
 
     def __init__(self, x, y, side, screen, start_index):
         self.x = x  # Position of the castle on axis X.

@@ -5,6 +5,11 @@ import math
 
 
 class Character(object):
+    """
+    A basic object by which the characters can be constructed, with the help of the object, you can move, attack, check
+    if an object is in an attack environment, show a walking picture, check a walking image and check the distance
+    between two objects.
+    """
 
     def __init__(self, type_character, x, y, width, height, width_attack, height_attack, start_health, power, cost,
                  step, attack_range, walk_img, attack_img,

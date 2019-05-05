@@ -10,8 +10,7 @@ from datetime import datetime
 from user_login import *
 
 
-# Total Lines : 1,193
-def m_screen():
+def menu_screen():
     pic = 'screens/menu_screen.png'
     screen_to_show = build_screen(1440, 759)
     run = True
@@ -247,7 +246,7 @@ def main():
     client_socket = socket.socket()
     client_socket.connect(('142.93.106.146', 8080))
     client_socket.setblocking(True)
-    login_or_sign_in = m_screen()
+    login_or_sign_in = menu_screen()
     sys.argv = [client_socket, login_or_sign_in]
     execfile("user_login.py")
     name = sys.argv[0]
@@ -272,7 +271,6 @@ def main():
                                                                is_not_tournament)
             if my_castle.health != 0:
                 play_intro()
-                show_loading_screen(is_not_tournament)
                 client_socket.send(
                     'add points to tournament and winning;' + name + ';' + password + ';' + str(int(my_castle.health)))
                 my_castle = communication_with_server_and_run_game(client_socket, open_client_sockets, name, password,
