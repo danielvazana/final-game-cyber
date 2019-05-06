@@ -155,7 +155,7 @@ def handel_charachter_to_append(mouse_x, mouse_y, characters_names, character_to
                 else:
                     return characters_names[1], mana
             elif flag and mana >= dict_names_cost[character_to_append]:
-                client_socket.send(character_to_append + ':' + str(mouse_x) + ':' + str(mouse_y) + ':' + my_side)
+                client_socket.send(':' + character_to_append + ':' + str(mouse_x) + ':' + str(mouse_y) + ':' + my_side + ':')
                 characters_names.remove(character_to_append)
                 characters_names.append(character_to_append)
                 return '', mana - dict_names_cost[character_to_append]
@@ -174,6 +174,7 @@ def handel_charachter_to_append(mouse_x, mouse_y, characters_names, character_to
 
 def return_character_by_string(data, screen, my_side, my_creachers, enemy_creachers):
     list_data = data.split(':')
+    list_data = list_data[1 : len(list_data) - 2]
     character_side = {'left': 'right', 'right': 'left'}
     if list_data[3] == my_side:
         if list_data[0] == 'Medusa':
