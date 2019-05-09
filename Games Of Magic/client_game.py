@@ -86,11 +86,11 @@ def closest_object_to_object(obj, list_to_find):
 
 def show_mana(mana, screen):
     if mana > 0:
-        pygame.draw.rect(screen, (0, 175, 255), (75, 18, mana * 15, 20))
+        pygame.draw.rect(screen, (180, 82, 205), (84, 24, mana * 16, 20))
     pygame.font.init()
-    myfont = pygame.font.SysFont('comicsansms', 30)
-    textsurface = myfont.render(str(mana), False, (0, 0, 205))
-    screen.blit(textsurface, (35, 20))
+    myfont = pygame.font.SysFont('comicsansms', 32)
+    textsurface = myfont.render(str(mana), False, (75,0,130))
+    screen.blit(textsurface, (39, 25))
 
 
 def characters_names_list():
