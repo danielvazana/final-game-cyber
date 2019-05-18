@@ -66,7 +66,7 @@ def score_screen(name, password, client_socket, data):
     run = True
     score = data.split(';')[0]
     winnings = data.split(';')[1]
-    font = pygame.font.SysFont("comicsansms", 50)
+    font = pygame.font.SysFont(None, 50)
     text_score = font.render(score, True, pg.Color('orange4'))
     text_winnings = font.render(winnings, True, pg.Color('orange4'))
     screen_to_show.blit(pygame.image.load(pic), (0, 0))
@@ -95,7 +95,7 @@ def winning_table_screen(name, password, client_socket, data):
         if len(list_winners) > 0:
             if list_winners[0][0] == ' ':
                 list_winners[0] = list_winners[0][1:]
-            font = pygame.font.SysFont("comicsansms", 40)
+            font = pygame.font.SysFont(None, 40)
             if len(list_winners[0]) > 14:
                 list_winners[0] = list_winners[0][:14] + '...'
             text_winner = font.render(list_winners[0], True, pg.Color('orange4'))
@@ -103,7 +103,7 @@ def winning_table_screen(name, password, client_socket, data):
         if len(list_winners) > 1:
             if list_winners[0][0] == ' ':
                 list_winners[0] = list_winners[0][1:]
-            font = pygame.font.SysFont("comicsansms", 40)
+            font = pygame.font.SysFont(None, 40)
             if len(list_winners[1]) > 14:
                 list_winners[1] = list_winners[1][:14] + '...'
             text_winner = font.render(list_winners[1], True, pg.Color('orange4'))
@@ -111,7 +111,7 @@ def winning_table_screen(name, password, client_socket, data):
         if len(list_winners) > 2:
             if list_winners[2][0] == ' ':
                 list_winners[2] = list_winners[2][1:]
-            font = pygame.font.SysFont("comicsansms", 40)
+            font = pygame.font.SysFont(None, 40)
             if len(list_winners[2]) > 14:
                 list_winners[2] = list_winners[2][:14] + '...'
             text_winner = font.render(list_winners[2], True, pg.Color('orange4'))
@@ -244,7 +244,7 @@ def communication_with_server_and_run_game(client_socket, open_client_sockets, n
 
 def main():
     client_socket = socket.socket()
-    client_socket.connect(('142.93.106.146', 8080))
+    client_socket.connect(('127.0.0.1', 8080))
     client_socket.setblocking(True)
     login_or_sign_in = menu_screen()
     sys.argv = [client_socket, login_or_sign_in]
